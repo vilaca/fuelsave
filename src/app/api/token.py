@@ -1,5 +1,5 @@
 from app.api import crud
-from app.api import token_service
+from app.api import key_service
 from app.api.models import TokenResponse, TokenRequest
 from fastapi import APIRouter, HTTPException
 
@@ -12,4 +12,4 @@ async def create_note(auth: TokenRequest):
     if not await crud.get_user(auth.username, auth.password):
         raise HTTPException(status_code=401, detail="Incorrect username or password.")
 
-    return {"key": token_service.create_token(data={"username": auth.username})}
+    return {"key": key_service.encode_key(data={"username": auth.username})}
