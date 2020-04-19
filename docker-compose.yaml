@@ -17,11 +17,13 @@ services:
     command: uvicorn app.main:app --reload --workers 1 --host 0.0.0.0 --port 8000
     volumes:
       - ./src/:/usr/src/app/
+      - ./data/:/data2import/
     environment:
       DATABASE_URL: postgresql://fuelsaveio:fuelsaveio@db/fuelsaveio
       SECRET_KEY: "897902aef01ba9689fa8d1a7c3e9b287a55fdc288d07d742a73f3c5173d03330"
       ALGORITHM: "HS256"
       TOKEN_TTL_MINUTES: 10
+      DATA_IMPORT_PATH: "/data2import"
     depends_on:
       - db
 

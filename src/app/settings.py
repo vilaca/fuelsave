@@ -2,10 +2,11 @@ import os
 
 
 class Settings:
-    SECRET_KEY = os.getenv("SECRET_KEY")
     ALGORITHM = os.getenv("ALGORITHM")
-    TOKEN_TTL_MINUTES = int(os.getenv("TOKEN_TTL_MINUTES", 10))
+    DATA_IMPORT_PATH = os.getenv("DATA_IMPORT_PATH")
     DATABASE_URL = os.getenv("DATABASE_URL")
+    SECRET_KEY = os.getenv("SECRET_KEY")
+    TOKEN_TTL_MINUTES = int(os.getenv("TOKEN_TTL_MINUTES", 10))
 
 
 settings = Settings()
