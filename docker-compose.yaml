@@ -14,7 +14,7 @@ services:
 
   app:
     build: ./src
-    command: uvicorn app.main:app --workers 4 --host 0.0.0.0 --port 8000
+    command: uvicorn app.main:app --workers 1 --host 0.0.0.0 --port 8000
     volumes:
       - ./src/:/usr/src/app/
       - ./data/:/data2import/
