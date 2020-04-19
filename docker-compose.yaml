@@ -7,18 +7,32 @@ services:
       - 80:80
     environment:
       # proxy_pass to...
-      APP_PORT: 8080
+      APP_PORT: 8000
       APP_DNS: app
     depends_on:
       - app
 
   app:
-    image: fastapi-bp
-    build:
-      context: .
-      dockerfile: Dockerfile
+    build: ./src
+    command: uvicorn app.main:app --reload --workers 1 --host 0.0.0.0 --port 8000
+    volumes:
+      - ./src/:/usr/src/app/
     environment:
-      # Gunicorn
-      PORT: 8080
+      DATABASE_URL: postgresql://fuelsaveio:fuelsaveio@db/fuelsaveio
+      SECRET_KEY: "897902aef01ba9689fa8d1a7c3e9b287a55fdc288d07d742a73f3c5173d03330"
+      ALGORITHM: "HS256"
+      TOKEN_TTL_MINUTES: 10
+    depends_on:
+      - db
+
+  db:
+    image: postgres:12.1-alpine
+#    volumes:
+#      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=fuelsaveio
+      # TODO hide secret
+      - POSTGRES_PASSWORD=fuelsaveio
+      - POSTGRES_DB=fuelsaveio
     ports:
-      - 8080:8080
+      - 5432:5432
