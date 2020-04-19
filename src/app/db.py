@@ -42,4 +42,5 @@ async def migrate():
             )
             await database.execute(query=query)
 
+
 database = Database(settings.DATABASE_URL)

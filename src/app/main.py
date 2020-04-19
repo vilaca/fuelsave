@@ -1,5 +1,5 @@
 from app.api import token
-from app.db import database, engine, metadata
+from app.db import database, engine, metadata, migrate
 from fastapi import FastAPI
 from starlette.responses import RedirectResponse
 
@@ -16,6 +16,7 @@ async def read_root():
 @app.on_event("startup")
 async def startup():
     await database.connect()
+    await migrate()
 
 
 @app.on_event("shutdown")
