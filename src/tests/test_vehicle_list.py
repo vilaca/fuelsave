@@ -36,7 +36,9 @@ def test_get_vehicle_list_w_header(test_app, monkeypatch):
     monkeypatch.setattr(crud, "get_vehicles", mock_list)
     monkeypatch.setattr(vehicles, "get_api_key", mock_get_api_key)
 
-    response = test_app.get("/vehicles", headers={'Authorization': "Bearer " + test_data2})
+    response = test_app.get(
+        "/vehicles", headers={"Authorization": "Bearer " + test_data2}
+    )
     assert response.status_code == 200
 
 
