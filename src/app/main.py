@@ -1,4 +1,4 @@
-from app.api import token, vehicles
+from app.api import token, vehicles, messages
 from app.db import database, engine, metadata, migrate
 from fastapi import FastAPI
 from starlette.responses import RedirectResponse
@@ -26,3 +26,4 @@ async def shutdown():
 
 app.include_router(token.router)
 app.include_router(vehicles.router)
+app.include_router(messages.router)
