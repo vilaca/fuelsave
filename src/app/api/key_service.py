@@ -10,7 +10,9 @@ def encode_key(
     to_encode = data.copy()
     expire = datetime.utcnow() + delta
     to_encode.update({"exp": expire})
-    return jwt.encode(to_encode, settings.SECRET_KEY, algorithm=settings.ALGORITHM)
+    return jwt.encode(
+        to_encode, settings.SECRET_KEY, algorithm=settings.ALGORITHM
+    ).decode("utf-8")
 
 
 def decode_key(key: str):
@@ -19,9 +21,9 @@ def decode_key(key: str):
         username: str = payload.get("username")
         if username is None:
             raise AuthenticationError("Could not validate credentials - no user")
+        return username
     except PyJWTError as e:
         raise AuthenticationError(str(e))
-    return username
 
 
 class AuthenticationError(Exception):

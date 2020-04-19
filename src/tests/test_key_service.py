@@ -9,7 +9,6 @@ def test_encode_key(test_app):
 def test_decode_key(test_app):
     test = "2test"
     key = key_service.encode_key(data={"username": test})
-    print(key)
     assert test == key_service.decode_key(key)
 
 

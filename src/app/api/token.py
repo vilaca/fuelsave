@@ -7,7 +7,7 @@ router = APIRouter()
 
 
 @router.post("/token", response_model=TokenResponse, status_code=201)
-async def create_note(auth: TokenRequest):
+async def create_token(auth: TokenRequest):
 
     if not await crud.get_user(auth.username, auth.password):
         raise HTTPException(status_code=401, detail="Incorrect username or password.")
