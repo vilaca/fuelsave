@@ -46,7 +46,8 @@ To generate private key for JWT and salt for password hashing:
 openssl rand -hex 32
 ```
 
-TODO:
-- kafka 
-
+To queue some messages into the fuelsave topic:
+```shell
+docker-compose exec kafka /opt/bitnami/kafka/bin/kafka-console-producer.sh --broker-list kafka:9092 --topic fuelsave
+```
 
