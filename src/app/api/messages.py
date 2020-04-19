@@ -16,5 +16,7 @@ async def last_messages():
     resp = []
     for msg in consumer:
         resp.append(msg)
+        if len(resp) == 10:
+            break
     consumer.close()
     return {"messages": resp}
