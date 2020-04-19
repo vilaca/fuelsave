@@ -1,4 +1,5 @@
 from app.settings import settings
+from app.api import hashing_service
 from databases import Database
 from sqlalchemy import Column, Integer, MetaData, String, Table, create_engine
 import csv
@@ -31,7 +32,9 @@ async def migrate():
         csv_reader = csv.reader(csv_file, delimiter=",")
         next(csv_reader)
         for row in csv_reader:
-            query = users.insert().values(username=row[0], password=row[1])
+            query = users.insert().values(
+                username=row[0], password=hashing_service.hash(row[1])
+            )
             await database.execute(query=query)
     with open(os.path.join(settings.DATA_IMPORT_PATH, "vehicles.csv")) as csv_file:
         csv_reader = csv.reader(csv_file, delimiter=",")

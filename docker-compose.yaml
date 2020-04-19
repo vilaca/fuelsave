@@ -21,6 +21,7 @@ services:
     environment:
       DATABASE_URL: postgresql://fuelsaveio:fuelsaveio@db/fuelsaveio
       SECRET_KEY: "897902aef01ba9689fa8d1a7c3e9b287a55fdc288d07d742a73f3c5173d03330"
+      PASSWORD_SALT: "3c56bce732f31ff1485d015f51bf05afe5623c87d0cff86d79ead3b0f7631f4c"
       ALGORITHM: "HS256"
       TOKEN_TTL_MINUTES: 10
       DATA_IMPORT_PATH: "/data2import"
