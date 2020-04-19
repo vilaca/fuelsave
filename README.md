@@ -8,6 +8,8 @@ For importing users.csv and vehicles.csv my first option was a script that would
 
 Passwords from users.csv are now hashed and salted before being stored on the users table. The Hash is set in docker-compose as an environment variable.
 
+The owner fields in vehicles.csv is a string and not very efficient. A possible future improvement is to use a foreign key with the primary key from table users.
+
 
 GET / will redirect to /docs for the OpenApi Documentation.
 
@@ -31,6 +33,5 @@ openssl rand -hex 32
 
 TODO:
 - kafka 
-- indexes on tables
 
 

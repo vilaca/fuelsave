@@ -12,7 +12,7 @@ users = Table(
     "users",
     metadata,
     Column("id", Integer, primary_key=True),
-    Column("username", String(50)),
+    Column("username", String(50), index=True),
     Column("password", String(50)),
 )
 
@@ -21,7 +21,7 @@ vehicles = Table(
     metadata,
     Column("id", Integer, primary_key=True),
     Column("distance", Integer),
-    Column("owner", String(50)),
+    Column("owner", String(50), index=True),
 )
 
 
