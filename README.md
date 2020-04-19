@@ -25,6 +25,16 @@ To run unit tests:
 docker-compose exec app pytest .
 ```
 
+To test login:
+```shell
+curl -X POST "http://localhost/token" -H  "accept: application/json" -H  "Content-Type: application/json" -d "{\"username\":\"user1\",\"password\":\"pass1\"}"
+```
+
+To test login:
+```shell
+curl -H 'Accept: application/json' -H "Authorization: Bearer <API-KEY>" http://localhost/vehicles
+```
+
 
 To generate private key for JWT and salt for password hashing:
 ```shell
