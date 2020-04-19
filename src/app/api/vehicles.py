@@ -13,7 +13,13 @@ async def get_api_key(
     auth_header: str = Security(APIKeyHeader(name="Authorization", auto_error=False)),
 ):
     try:
-        key: str = auth_header if not query_string else query_string
+        if query_string:
+            key: str = query_string
+        else:
+            key: str = str(auth_header)
+            if not key.startswith("Bearer "):
+                raise HTTPException(status_code=401, detail="Bearer expected.")
+            key = key[len("Bearer "):]
         return key_service.decode_key(key)
     except key_service.AuthenticationError as e:
         raise HTTPException(status_code=401, detail=str(e))
