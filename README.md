@@ -25,14 +25,19 @@ To run unit tests:
 docker-compose exec app pytest .
 ```
 
-To test login:
+To login with 'user1' and get an API-KEY:
 ```shell
 curl -X POST "http://localhost/token" -H  "accept: application/json" -H  "Content-Type: application/json" -d "{\"username\":\"user1\",\"password\":\"pass1\"}"
 ```
 
-To test login:
+To list vehicles for user w/ API-KEY in header:
 ```shell
 curl -H 'Accept: application/json' -H "Authorization: Bearer <API-KEY>" http://localhost/vehicles
+```
+
+To list vehicles for user w/ API-KEY as a query string parameter:
+```shell
+curl -H 'Accept: application/json' "http://localhost/vehicles?api-key=<API-KEY>"
 ```
 
 
